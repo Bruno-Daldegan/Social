@@ -2,7 +2,7 @@
 Simulação de gerenciamento de contas e pagamentos
 
 Este projeto tem como propósito exercitar o gerenciamento de contas e transações bancárias de forma fictícia.
-Ele foi desenvolvido em NetCore 3.1, utilizando bibliotecas do NuGet e se baseando em um banco SQL Server.
+Ele foi desenvolvido em NetCore 3.1, utilizando bibliotecas do NuGet e se baseando em memória de um banco SQL Server.
 
 Inicialmente é dividido nas pastas: Common, APIs, Services e Tests.
 
@@ -27,13 +27,18 @@ Abaixo segue as instruções de como rodar o projeto.
 - Para obter token válido, é necessário rodar o projeto "Social.IdentidadeAPI".
 No controlador AuthController contém os endPoints de criação e autenticação do usuário.
 
-- Para rodar o migration desse projeto. É necessário abrir o Packege Maganer Console no Nuget Packege Maganer.
+- Caso opte por um banco local. Basta descomentar a linha 21 da classe "namespace Social.IdentidadeAPI.Configuration.IdentityConfig".
+Para rodar o migration desse projeto. É necessário abrir o Packege Maganer Console no Nuget Packege Maganer.
 Executar o comando "update-database".
 
-- Depois enviar dados de cadastro para o endPoint "nova-conta".
+- Também tem anexado ao projeto, scripts de criação do banco principal.
+Também será necessário descomentar a linha 21 da classe "namespace Social.RestFullAPI.Configuration.ApiConfig".
 
-- Após obter token. Colocar como projeto padrão o "Social.RestFullAPI".
-Rodar o projeto usando o lauchSettings "Social.RestFullAPI" ou "IIS Express" em https://localhost:5001 ou http://localhost:5000.
-Assim que o Swagger abrir via browser, a API poderá ser consumida.
+- Ordem de start:
+	- Criar uma conta pelo endpoint "nova-conta".
+	- Após obter token. Colocar como projeto padrão o "Social.RestFullAPI".
+	- O ideal é configurar a solução para iniciar as duas APIs ao mesmo tempo. (Social.RestFullAPI e Social.IdentidadeAPI)
+	- Rodar o projeto usando o lauchSettings "Docker" ou "IIS Express" em https://localhost:5001 ou http://localhost:5000.
+	- Assim que o Swagger abrir via browser, a API poderá ser consumida.
 
 
